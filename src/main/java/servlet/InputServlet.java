@@ -33,7 +33,7 @@ public class InputServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		// リダイレクト
-		response.sendRedirect("input.jsp");
+		response.sendRedirect("index.jsp");
 
 	}
 
@@ -62,7 +62,8 @@ public class InputServlet extends HttpServlet {
 		}
 
 		if (errorMsg != "") {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("input.jsp");
+			request.setAttribute("errorMsg", errorMsg);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/input.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
@@ -81,7 +82,7 @@ public class InputServlet extends HttpServlet {
 
 		//フォワード
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/list.jsp");
 		dispatcher.forward(request, response);
 
 	}
